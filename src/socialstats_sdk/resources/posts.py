@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Any
+from urllib.parse import quote
 
 from .base import ResourceAPI, require_any_identifier
 
@@ -16,6 +17,16 @@ class PostsAPI(ResourceAPI):
     def historic_stats(self, **params: Any) -> Any:
         query = _require_post_params(params)
         return self._get("posts/historic_stats", params=query)
+
+    def authorized_stats(self, **params: Any) -> Any:
+        query = _require_post_params(params)
+        source_id = quote(str(query["source_id"]), safe="")
+        return self._get(f"posts/authorized/{source_id}/stats", params=query)
+
+    def authorized_historic_stats(self, **params: Any) -> Any:
+        query = _require_post_params(params)
+        source_id = quote(str(query["source_id"]), safe="")
+        return self._get(f"posts/authorized/{source_id}/historic_stats", params=query)
 
 
 def _require_post_params(params: dict[str, Any]) -> dict[str, Any]:

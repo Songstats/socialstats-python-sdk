@@ -34,6 +34,18 @@ class CreatorsAPI(ResourceAPI):
     def content(self, **params: Any) -> Any:
         return self._get("creators/content", params=self._with_identifier(params))
 
+    def authorized_stats(self, **params: Any) -> Any:
+        return self._get("creators/authorized/stats", params=self._with_identifier(params))
+
+    def authorized_historic_stats(self, **params: Any) -> Any:
+        return self._get("creators/authorized/historic_stats", params=self._with_identifier(params))
+
+    def authorized_audience(self, **params: Any) -> Any:
+        return self._get("creators/authorized/audience", params=self._with_identifier(params))
+
+    def authorized_content(self, **params: Any) -> Any:
+        return self._get("creators/authorized/content", params=self._with_identifier(params))
+
     def top_posts(self, **params: Any) -> Any:
         return self._get("creators/top_posts", params=self._with_identifier(params))
 

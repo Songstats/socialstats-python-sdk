@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## Unreleased
+
+### Added
+
+- OAuth authorization lifecycle resource coverage
+- Authorized creator and post resource methods
+
 ## [0.1.0] - 2026-06-25
 
 ### Added

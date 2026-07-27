@@ -3,7 +3,7 @@ from __future__ import annotations
 import httpx
 
 from .http import DEFAULT_BASE_URL, SocialstatsHTTPClient
-from .resources import CreatorsAPI, InfoAPI, PostsAPI
+from .resources import CreatorsAPI, InfoAPI, OAuthAPI, PostsAPI
 
 
 class SocialstatsClient:
@@ -29,6 +29,7 @@ class SocialstatsClient:
         self.info = InfoAPI(self._http)
         self.creators = CreatorsAPI(self._http)
         self.posts = PostsAPI(self._http)
+        self.oauth = OAuthAPI(self._http)
 
     def close(self) -> None:
         self._http.close()
