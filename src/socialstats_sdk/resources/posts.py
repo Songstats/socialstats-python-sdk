@@ -3,9 +3,8 @@ from __future__ import annotations
 from typing import Any
 from urllib.parse import quote
 
-from .base import ResourceAPI, require_any_identifier
+from .base import CREATOR_IDENTIFIER_KEYS, ResourceAPI, require_any_identifier
 
-_POST_REQUIRED_KEYS = ("socialstats_creator_id", "source_id")
 _POST_IDENTIFIER_KEYS = ("post_id", "id_unique", "external_id")
 
 
@@ -31,10 +30,9 @@ class PostsAPI(ResourceAPI):
 
 def _require_post_params(params: dict[str, Any]) -> dict[str, Any]:
     query = dict(params)
-    missing = [key for key in _POST_REQUIRED_KEYS if query.get(key) in (None, "")]
-    if missing:
-        joined = ", ".join(missing)
-        raise ValueError(f"Missing required parameter(s): {joined}")
+    if query.get("source_id") in (None, ""):
+        raise ValueError("source_id is required")
 
+    require_any_identifier(query, CREATOR_IDENTIFIER_KEYS)
     require_any_identifier(query, _POST_IDENTIFIER_KEYS)
     return query

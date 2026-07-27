@@ -3,21 +3,16 @@ from __future__ import annotations
 from typing import Any
 from urllib.parse import quote
 
-from .base import ResourceAPI
+from .base import CREATOR_IDENTIFIER_KEYS, ResourceAPI, require_any_identifier
 
 
 class OAuthAPI(ResourceAPI):
-    def create(self, *, socialstats_creator_id: str, source_id: str, **params: Any) -> Any:
-        if not socialstats_creator_id:
-            raise ValueError("socialstats_creator_id is required")
+    def create(self, *, source_id: str, **params: Any) -> Any:
         if not source_id:
             raise ValueError("source_id is required")
 
-        query = {
-            "socialstats_creator_id": socialstats_creator_id,
-            "source_id": source_id,
-            **params,
-        }
+        query = {"source_id": source_id, **params}
+        require_any_identifier(query, CREATOR_IDENTIFIER_KEYS)
         return self._post("oauth", params=query)
 
     def list(self, **params: Any) -> Any:

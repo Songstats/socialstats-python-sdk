@@ -4,6 +4,14 @@ from typing import Any, Iterable, Mapping
 
 from ..http import SocialstatsHTTPClient
 
+CREATOR_IDENTIFIER_KEYS = (
+    "socialstats_creator_id",
+    "instagram_creator_id",
+    "facebook_creator_id",
+    "youtube_creator_id",
+    "tiktok_creator_id",
+)
+
 
 class ResourceAPI:
     def __init__(self, http_client: SocialstatsHTTPClient) -> None:
@@ -51,4 +59,3 @@ def require_any_identifier(params: Mapping[str, Any], identifier_keys: Iterable[
         return
     joined = ", ".join(identifier_keys)
     raise ValueError(f"One identifier is required. Supported keys: {joined}")
-

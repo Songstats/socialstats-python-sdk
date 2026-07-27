@@ -39,7 +39,7 @@ Authentication observed in Rails and OpenAPI: `apikey` request header.
 | POST   | `/link_request`       | `client.creators.add_link_request(link=..., ...)`      | OpenAPI + Rails |
 | DELETE | `/link_request`       | `client.creators.remove_link_request(link=..., ...)`   | OpenAPI + Rails |
 
-Creator endpoints require `socialstats_creator_id`, except `search`, which requires `q`.
+Creator endpoints require one creator identifier (`socialstats_creator_id`, `instagram_creator_id`, `facebook_creator_id`, `youtube_creator_id`, or `tiktok_creator_id`), except `search`, which requires `q`.
 
 ## `/enterprise/v1/posts`
 
@@ -50,7 +50,7 @@ Creator endpoints require `socialstats_creator_id`, except `search`, which requi
 | GET  | `/authorized/:source_id/stats` | `client.posts.authorized_stats(...)` | OpenAPI + Rails |
 | GET  | `/authorized/:source_id/historic_stats` | `client.posts.authorized_historic_stats(...)` | OpenAPI + Rails |
 
-Post endpoints require `socialstats_creator_id`, `source_id`, and one post identifier: `post_id`, `id_unique`, or `external_id`.
+Post endpoints require one creator identifier, `source_id`, and one post identifier: `post_id`, `id_unique`, or `external_id`.
 
 ## `/enterprise/v1/oauth`
 

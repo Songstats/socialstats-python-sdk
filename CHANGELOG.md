@@ -8,6 +8,7 @@ All notable changes to this project are documented in this file.
 
 - OAuth authorization lifecycle resource coverage
 - Authorized creator and post resource methods
+- Platform-specific creator ID and username selectors
 
 ## [0.1.0] - 2026-06-25
 

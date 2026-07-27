@@ -81,6 +81,8 @@ We recommend storing your key securely in environment variables:
 - `client.posts`
 - `client.oauth`
 
+Creator-scoped methods accept `socialstats_creator_id`, `instagram_creator_id`, `facebook_creator_id`, `youtube_creator_id`, or `tiktok_creator_id`. Platform-specific identifiers may be either the platform's internal ID or its username.
+
 Info endpoints:
 - `client.info.sources()` -> `/sources`
 - `client.info.status()` -> `/status`

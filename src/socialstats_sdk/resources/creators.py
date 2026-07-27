@@ -2,9 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from .base import ResourceAPI, require_any_identifier
-
-_CREATOR_IDENTIFIER_KEYS = ("socialstats_creator_id",)
+from .base import CREATOR_IDENTIFIER_KEYS, ResourceAPI, require_any_identifier
 
 
 class CreatorsAPI(ResourceAPI):
@@ -75,5 +73,5 @@ class CreatorsAPI(ResourceAPI):
 
     def _with_identifier(self, params: dict[str, Any]) -> dict[str, Any]:
         query = dict(params)
-        require_any_identifier(query, _CREATOR_IDENTIFIER_KEYS)
+        require_any_identifier(query, CREATOR_IDENTIFIER_KEYS)
         return query
