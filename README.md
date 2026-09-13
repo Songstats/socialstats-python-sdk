@@ -64,7 +64,15 @@ authorization_status = client.oauth.attempt_status(authorization["state_token"])
 
 ## Authentication
 
-All requests include your API key in the `apikey` header.
+All requests include your API key in the `apikey` header. The SDK applies its
+`base_url`, `timeout`, `api_key`, and `user_agent` settings to each request, including
+when you supply an `httpx_client`. Other client settings remain available, and
+closing the SDK does not close a client you supplied. Redirects are not followed;
+configure the final API base URL.
+
+`max_retries` applies only to GET and HEAD requests. Write requests are attempted
+once because a transport failure or server error can occur after a write has
+already succeeded. Check the resulting state before retrying a write.
 
 You can request an API key by contacting api@socialstats.com.
 

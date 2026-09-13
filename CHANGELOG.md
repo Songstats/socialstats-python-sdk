@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Fixed
+
+- Apply SDK authentication, base URL, timeout, and user agent to injected HTTPX clients without changing or closing the supplied client.
+- Disable redirects so the API key is not forwarded to a redirected endpoint.
+- Retry only GET and HEAD requests; ambiguous write failures are surfaced after one attempt.
+
 ### Added
 
 - OAuth authorization lifecycle resource coverage
