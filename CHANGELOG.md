@@ -6,6 +6,7 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Route public post statistics through the source-specific API paths instead of nonexistent generic post endpoints.
 - Apply SDK authentication, base URL, timeout, and user agent to injected HTTPX clients without changing or closing the supplied client.
 - Disable redirects so the API key is not forwarded to a redirected endpoint.
 - Retry only GET and HEAD requests; ambiguous write failures are surfaced after one attempt.

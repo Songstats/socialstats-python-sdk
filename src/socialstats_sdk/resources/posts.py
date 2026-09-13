@@ -11,21 +11,19 @@ _POST_IDENTIFIER_KEYS = ("post_id", "id_unique", "external_id")
 class PostsAPI(ResourceAPI):
     def stats(self, **params: Any) -> Any:
         query = _require_post_params(params)
-        return self._get("posts/stats", params=query)
+        return self._get(_post_path(query, "stats"), params=query)
 
     def historic_stats(self, **params: Any) -> Any:
         query = _require_post_params(params)
-        return self._get("posts/historic_stats", params=query)
+        return self._get(_post_path(query, "historic_stats"), params=query)
 
     def authorized_stats(self, **params: Any) -> Any:
         query = _require_post_params(params)
-        source_id = quote(str(query["source_id"]), safe="")
-        return self._get(f"posts/authorized/{source_id}/stats", params=query)
+        return self._get(_post_path(query, "stats", authorized=True), params=query)
 
     def authorized_historic_stats(self, **params: Any) -> Any:
         query = _require_post_params(params)
-        source_id = quote(str(query["source_id"]), safe="")
-        return self._get(f"posts/authorized/{source_id}/historic_stats", params=query)
+        return self._get(_post_path(query, "historic_stats", authorized=True), params=query)
 
 
 def _require_post_params(params: dict[str, Any]) -> dict[str, Any]:
@@ -36,3 +34,9 @@ def _require_post_params(params: dict[str, Any]) -> dict[str, Any]:
     require_any_identifier(query, CREATOR_IDENTIFIER_KEYS)
     require_any_identifier(query, _POST_IDENTIFIER_KEYS)
     return query
+
+
+def _post_path(params: dict[str, Any], action: str, *, authorized: bool = False) -> str:
+    source_id = quote(str(params["source_id"]), safe="")
+    prefix = "posts/authorized" if authorized else "posts"
+    return f"{prefix}/{source_id}/{action}"

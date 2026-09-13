@@ -45,8 +45,8 @@ Creator endpoints require one creator identifier (`socialstats_creator_id`, `ins
 
 | HTTP | Route             | SDK Method                       | Source |
 | ---- | ----------------- | -------------------------------- | ------ |
-| GET  | `/stats`          | `client.posts.stats(...)`        | OpenAPI + Rails |
-| GET  | `/historic_stats` | `client.posts.historic_stats(...)` | OpenAPI + Rails |
+| GET  | `/:source_id/stats`          | `client.posts.stats(...)`        | OpenAPI + Rails |
+| GET  | `/:source_id/historic_stats` | `client.posts.historic_stats(...)` | OpenAPI + Rails |
 | GET  | `/authorized/:source_id/stats` | `client.posts.authorized_stats(...)` | OpenAPI + Rails |
 | GET  | `/authorized/:source_id/historic_stats` | `client.posts.authorized_historic_stats(...)` | OpenAPI + Rails |
 

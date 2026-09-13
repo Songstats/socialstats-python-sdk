@@ -115,8 +115,8 @@ Creator endpoints:
 - `client.creators.remove_link_request(link=..., ...)` -> `/creators/link_request`
 
 Post endpoints:
-- `client.posts.stats(...)` -> `/posts/stats`
-- `client.posts.historic_stats(...)` -> `/posts/historic_stats`
+- `client.posts.stats(...)` -> `/posts/{source_id}/stats`
+- `client.posts.historic_stats(...)` -> `/posts/{source_id}/historic_stats`
 - `client.posts.authorized_stats(...)` -> `/posts/authorized/{source_id}/stats`
 - `client.posts.authorized_historic_stats(...)` -> `/posts/authorized/{source_id}/historic_stats`
 
