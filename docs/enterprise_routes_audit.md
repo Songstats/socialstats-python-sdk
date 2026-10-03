@@ -30,10 +30,6 @@ Authentication observed in Rails and OpenAPI: `apikey` request header.
 | GET    | `/audience/details`   | `client.creators.audience_details(country_code=..., ...)` | OpenAPI + Rails |
 | GET    | `/activities`         | `client.creators.activities(...)`                      | OpenAPI + Rails |
 | GET    | `/content`            | `client.creators.content(...)`                         | OpenAPI + Rails |
-| GET    | `/authorized/stats`   | `client.creators.authorized_stats(...)`                | OpenAPI + Rails |
-| GET    | `/authorized/historic_stats` | `client.creators.authorized_historic_stats(...)` | OpenAPI + Rails |
-| GET    | `/authorized/audience` | `client.creators.authorized_audience(...)`            | OpenAPI + Rails |
-| GET    | `/authorized/content` | `client.creators.authorized_content(...)`              | OpenAPI + Rails |
 | GET    | `/top_posts`          | `client.creators.top_posts(...)`                       | OpenAPI + Rails |
 | GET    | `/search`             | `client.creators.search(q=..., ...)`                   | OpenAPI + Rails |
 | POST   | `/link_request`       | `client.creators.add_link_request(link=..., ...)`      | OpenAPI + Rails |
@@ -47,8 +43,6 @@ Creator endpoints require one creator identifier (`socialstats_creator_id`, `ins
 | ---- | ----------------- | -------------------------------- | ------ |
 | GET  | `/:source_id/stats`          | `client.posts.stats(...)`        | OpenAPI + Rails |
 | GET  | `/:source_id/historic_stats` | `client.posts.historic_stats(...)` | OpenAPI + Rails |
-| GET  | `/authorized/:source_id/stats` | `client.posts.authorized_stats(...)` | OpenAPI + Rails |
-| GET  | `/authorized/:source_id/historic_stats` | `client.posts.authorized_historic_stats(...)` | OpenAPI + Rails |
 
 Post endpoints require one creator identifier, `source_id`, and one post identifier: `post_id`, `id_unique`, or `external_id`.
 
@@ -61,3 +55,5 @@ Post endpoints require one creator identifier, `source_id`, and one post identif
 | GET    | `/oauth/:id`                   | `client.oauth.get(...)`            | OpenAPI + Rails |
 | DELETE | `/oauth/:id`                   | `client.oauth.revoke(...)`         | OpenAPI + Rails |
 | GET    | `/oauth-attempts/:state_token` | `client.oauth.attempt_status(...)` | OpenAPI + Rails |
+
+Regular analytics use automatic channel access; the retained legacy methods are compatibility aliases. Pass `data_access=public` for public data only.

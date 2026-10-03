@@ -7,6 +7,25 @@ API Key Access: Please contact api@socialstats.com
 
 ---
 
+## Automatic Data Access
+
+Regular creator and post analytics automatically use this key's existing channel
+connections. Member keys reuse dashboard connections; Enterprise keys use their
+own authorization grants. Public data is returned where supported when no valid
+connection exists. Pass `data_access` as `"public"` to exclude connected-account
+insights, or omit it for the default `"auto"` behavior.
+
+Inspect `data_access_used` (`public` or `authorized`) per source or post.
+`is_authorized` and `authorization_status` describe the connection independently
+of the selected dataset. Connected-account fields are optional; missing values
+are not zero. Facebook posts and Instagram stories require owner channel
+authorization. Without it or in public mode, lists omit these posts and post-detail
+reads return 403. Public posts from other profiles remain available.
+
+Existing authorized SDK methods remain compatible aliases. New integrations
+should use the regular methods shown below. Analytics methods forward `data_access`
+without a package upgrade.
+
 ## Requirements
 
 - Python >= 3.10
@@ -105,10 +124,6 @@ Creator endpoints:
 - `client.creators.audience_details(country_code=..., ...)` -> `/creators/audience/details`
 - `client.creators.activities(...)` -> `/creators/activities`
 - `client.creators.content(...)` -> `/creators/content`
-- `client.creators.authorized_stats(...)` -> `/creators/authorized/stats`
-- `client.creators.authorized_historic_stats(...)` -> `/creators/authorized/historic_stats`
-- `client.creators.authorized_audience(...)` -> `/creators/authorized/audience`
-- `client.creators.authorized_content(...)` -> `/creators/authorized/content`
 - `client.creators.top_posts(...)` -> `/creators/top_posts`
 - `client.creators.search(q=..., ...)` -> `/creators/search`
 - `client.creators.add_link_request(link=..., ...)` -> `/creators/link_request`
@@ -117,8 +132,6 @@ Creator endpoints:
 Post endpoints:
 - `client.posts.stats(...)` -> `/posts/{source_id}/stats`
 - `client.posts.historic_stats(...)` -> `/posts/{source_id}/historic_stats`
-- `client.posts.authorized_stats(...)` -> `/posts/authorized/{source_id}/stats`
-- `client.posts.authorized_historic_stats(...)` -> `/posts/authorized/{source_id}/historic_stats`
 
 OAuth endpoints:
 - `client.oauth.create(...)` -> `POST /oauth`
