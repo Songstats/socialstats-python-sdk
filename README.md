@@ -10,10 +10,15 @@ API Key Access: Please contact api@socialstats.com
 ## Automatic Data Access
 
 Regular creator and post analytics automatically use this key's existing channel
-connections. Member keys reuse dashboard connections; Enterprise keys use their
-own authorization grants. Public data is returned where supported when no valid
-connection exists. Pass `data_access` as `"public"` to exclude connected-account
+connections. Member and entity keys reuse their owning member's active dashboard
+connections. Entity keys also accept their agreement's authorization grants; other
+Enterprise key types use only their own grants. Public data is returned where
+supported when no valid connection exists. Pass `data_access` as `"public"` to exclude connected-account
 insights, or omit it for the default `"auto"` behavior.
+
+Dashboard connections returned by `oauth.list` have no grant `id`; disconnect
+them in the dashboard. Revoking an entity key's agreement grant does not remove
+an independent dashboard connection.
 
 Inspect `data_access_used` (`public` or `authorized`) per source or post.
 `is_authorized` and `authorization_status` describe the connection independently
